@@ -10,7 +10,7 @@ from logging import getLogger
 
 import requests
 
-from .constants import HTTP_HEADER_CONTENT_ENCODING, SHA256_DIGEST, FileHeader, ResultStatus
+from .constants import HTTP_HEADER_CONTENT_ENCODING, SHA256_DIGEST, FileHeader, ResultStatus  # NOQA
 from .encryption_util import EncryptionMetadata
 
 GCS_METADATA_PREFIX = 'x-goog-meta-'
@@ -90,7 +90,7 @@ class SnowflakeGCSUtil:
 
             gcs_headers = {
                 HTTP_HEADER_CONTENT_ENCODING: content_encoding,
-                GCS_METADATA_SFC_DIGEST: meta[SHA256_DIGEST],
+                # GCS_METADATA_SFC_DIGEST: meta[SHA256_DIGEST],
             }
 
             if encryption_metadata:
@@ -160,7 +160,7 @@ class SnowflakeGCSUtil:
             meta['dst_file_size'] = meta['upload_size']
             meta['result_status'] = ResultStatus.UPLOADED
 
-            meta[GCS_FILE_HEADER_DIGEST] = gcs_headers[GCS_METADATA_SFC_DIGEST]
+            # meta[GCS_FILE_HEADER_DIGEST] = gcs_headers[GCS_METADATA_SFC_DIGEST]
             meta[GCS_FILE_HEADER_CONTENT_LENGTH] = meta['upload_size']
             meta[GCS_FILE_HEADER_ENCRYPTION_METADATA] = \
                 gcs_headers.get(GCS_METADATA_ENCRYPTIONDATAPROP, None)
